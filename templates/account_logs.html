@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAAS RAMOS - Logs</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">SAAS RAMOS - Estoque</div>
+        <div class="nav-links">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/accounts/add">Importar</a>
+            <a href="/logout" class="logout">Sair</a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="card">
+            <h2>Logs de @{{ account.username }}</h2>
+            <table class="logs-table">
+                <thead><tr><th>Data</th><th>Evento</th><th>Mensagem</th></tr></thead>
+                <tbody>
+                    {% for log in logs %}
+                    <tr><td>{{ log.created_at }}</td><td>{{ log.event }}</td><td>{{ log.message }}</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% if not logs %}<p class="hint">Nenhum log registrado.</p>{% endif %}
+        </div>
+        <a href="/dashboard" class="btn-secondary">Voltar</a>
+    </div>
+</body>
+</html>
