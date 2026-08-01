@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAAS RAMOS - Importar Contas</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">SAAS RAMOS - Estoque</div>
+        <div class="nav-links">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/accounts/add" class="active">Importar</a>
+            <a href="/logout" class="logout">Sair</a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="card">
+            <h2>Importar Contas TikTok</h2>
+            <p class="hint">Importe os arquivos JSON exportados pela extensão.</p>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                <div class="flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+            <form method="POST" enctype="multipart/form-data" class="import-form">
+                <div class="form-section">
+                    <h3>Opção 1: Upload de Arquivos JSON</h3>
+                    <input type="file" name="json_files" multiple accept=".json" class="file-input">
+                </div>
+                <div class="form-section">
+                    <h3>Opção 2: Colar JSON</h3>
+                    <textarea name="json_text" rows="8" placeholder='{"localStorage": "{...}", "cookies": [...]}'></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Importar Contas</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
